@@ -278,7 +278,19 @@ $('ce').onclick=()=>{try{
  const t=(s,y,sz,col,b)=>{x.fillStyle=col;x.font=(b?'bold ':'')+sz+'px '+F;x.fillText(s,(W-x.measureText(s).width)/2,y)};
  t('🏅',170,90,'#000');t('شهادة تقدير',275,86,'#d6336c',1);t('تُقدّم المعلمة '+S.teacher+' هذه الشهادة للطالبة',355,34,'#6b4b7a');
  x.fillStyle='#fde8f1';x.fillRect(110,400,W-220,130);x.fillStyle='#d6a10a';x.fillRect(110,400,W-220,5);x.fillRect(110,525,W-220,5);
- t(dn(),488,80,'#7048e8',1);
+// كود ذكي لضبط حجم الاسم تلقائياً ليظهر كاملاً
+let nameSize = 80;
+const nameStr = dn();
+if(nameStr.length > 12) {
+    nameSize = 60; // إذا كان الاسم طويلاً قليلاً
+}
+if(nameStr.length > 18) {
+    nameSize = 45; // إذا كان الاسم طويلاً جداً (اسم الطالبة + الأب)
+}
+if(nameStr.length > 25) {
+    nameSize = 35; // للاسماء الطويلة جداً
+}
+t(nameStr, 488, nameSize, '#7048e8', 1);
  t('تقديرًا لمشاركتها في لوحة النقاش «الأمة القارئة لا تهزم»',595,32,'#3b1f4a');
  L.forEach((l,i)=>l&&t(l,top+i*lh,30,'#3b1f4a'));
  t(new Date().toLocaleDateString('ar-SA'),H-110,28,'#6b4b7a');
